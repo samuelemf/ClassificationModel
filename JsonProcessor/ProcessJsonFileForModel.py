@@ -27,19 +27,11 @@ def processJson(json_file):
 
             # Extract upper body features
             upper_keypoints = []
-            for part in UPPER_BODY_PARTS:
-                if part in body_keypoints:
-                    x = float(body_keypoints[part]["x"])
-                    y = float(body_keypoints[part]["y"])
-                    upper_keypoints.extend([x, y])
+            keypointsExtraction(body_keypoints, UPPER_BODY_PARTS, upper_keypoints)
 
             # Extract lower body features
             lower_keypoints = []
-            for part in LOWER_BODY_PARTS:
-                if part in body_keypoints:
-                    x = float(body_keypoints[part]["x"])
-                    y = float(body_keypoints[part]["y"])
-                    lower_keypoints.extend([x, y])
+            keypointsExtraction(body_keypoints, LOWER_BODY_PARTS, lower_keypoints)
 
             # Append the keypoints and labels
             upper_features.append(upper_keypoints)
@@ -48,3 +40,11 @@ def processJson(json_file):
             lower_labels.append(subject["lowerBody"])
 
     return upper_features, lower_features, upper_labels, lower_labels
+
+
+def keypointsExtraction(body_keypoints, body_parts, keypoints):
+    for part in body_parts:
+        if part in body_keypoints:
+            x = float(body_keypoints[part]["x"])
+            y = float(body_keypoints[part]["y"])
+            keypoints.extend([x, y])
