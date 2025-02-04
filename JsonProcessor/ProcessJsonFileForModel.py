@@ -1,4 +1,6 @@
 from JsonProcessor.OpenJsonFile import openJsonFile
+from model.NormalizationKeyPoints import normalize_keypoints
+
 
 UPPER_BODY_PARTS = ["rightEar", "leftEar", "leftElbow", "leftEye", "leftHip",
                     "leftShoulder", "leftWrist", "middleHip", "neck", "nose",
@@ -26,12 +28,10 @@ def processJson(json_file):
             body_keypoints = subject["body"]
 
             # Extract upper body features
-            upper_keypoints = []
-            keypointsExtraction(body_keypoints, UPPER_BODY_PARTS, upper_keypoints)
+            upper_keypoints = normalize_keypoints(body_keypoints, "neck")
 
             # Extract lower body features
-            lower_keypoints = []
-            keypointsExtraction(body_keypoints, LOWER_BODY_PARTS, lower_keypoints)
+            lower_keypoints = normalize_keypoints(body_keypoints, "middleHip")
 
             # Append the keypoints and labels
             upper_features.append(upper_keypoints)
