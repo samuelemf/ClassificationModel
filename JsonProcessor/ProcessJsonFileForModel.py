@@ -28,10 +28,8 @@ def processJson(json_file):
             body_keypoints = subject["body"]
 
             # Extract upper body features
-            upper_keypoints = normalize_keypoints(body_keypoints, "neck")
-
-            # Extract lower body features
-            lower_keypoints = normalize_keypoints(body_keypoints, "middleHip")
+            upper_keypoints = normalize_keypoints(body_keypoints, "neck", UPPER_BODY_PARTS)
+            lower_keypoints = normalize_keypoints(body_keypoints, "middleHip", LOWER_BODY_PARTS)
 
             # Append the keypoints and labels
             upper_features.append(upper_keypoints)
