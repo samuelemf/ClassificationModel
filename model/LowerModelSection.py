@@ -13,4 +13,4 @@ def lowerModelSection(x_lower, y_lower):
     x_test_lower_padded = np.array([row + [0] * (max_length - len(row)) for row in x_test_lower], dtype=np.float32)
     y_train_lower = np.array(y_train_lower, dtype=np.int32)
 
-    trainingSection(x_train_lower_padded, y_train_lower, x_test_lower_padded, y_test_lower)
+    trainingSection(x_train_lower_padded, y_train_lower, x_test_lower_padded, y_test_lower, 'Lower Body')
